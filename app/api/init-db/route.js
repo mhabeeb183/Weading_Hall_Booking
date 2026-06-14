@@ -10,14 +10,14 @@ export async function GET() {
 
     const sql = neon(dbUrl);
 
-    await sql\CREATE TABLE IF NOT EXISTS Booking (
+    await sql`CREATE TABLE IF NOT EXISTS Booking (
         id SERIAL PRIMARY KEY,
         date TEXT NOT NULL,
-        \"timeSlot\" TEXT NOT NULL,
+        "timeSlot" TEXT NOT NULL,
         description TEXT,
-        \"isBooked\" BOOLEAN NOT NULL DEFAULT true,
-        \"createdAt\" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-    );\;
+        "isBooked" BOOLEAN NOT NULL DEFAULT true,
+        "createdAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );`;
 
     return NextResponse.json({ success: true, message: 'Database table created successfully!' });
   } catch (error) {
