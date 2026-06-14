@@ -3,11 +3,12 @@ import { neon } from '@neondatabase/serverless';
 
 export async function GET() {
   try {
-    if (!process.env.DATABASE_URL) {
-      return NextResponse.json({ error: 'No DATABASE_URL found. Please add a Neon Postgres database to your Vercel project first!' }, { status: 400 });
+    const dbUrl = process.env.DATABASE_URL || process.env.POSTGRES_URL;
+    if (!dbUrl) {
+      return NextResponse.json({ error: 'No DATABASE_URL or POSTGRES_URL found. Please add a Neon Postgres database to your Vercel project first!' }, { status: 400 });
     }
 
-    const sql = neon(process.env.DATABASE_URL);
+    const sql = neon(dbUrl);
 
     await sql\CREATE TABLE IF NOT EXISTS Booking (
         id SERIAL PRIMARY KEY,

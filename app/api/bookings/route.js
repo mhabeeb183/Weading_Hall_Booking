@@ -4,8 +4,9 @@ import { neon } from '@neondatabase/serverless'
 // To support local dev without Postgres yet, we optionally fallback (for safety)
 export async function GET() {
   try {
-    if (!process.env.DATABASE_URL) return NextResponse.json([]); // Fallback during local dev transition
-    const sql = neon(process.env.DATABASE_URL);
+    const dbUrl = process.env.DATABASE_URL || process.env.POSTGRES_URL;
+    if (!dbUrl) return NextResponse.json([]); // Fallback during local dev transition
+    const sql = neon(dbUrl);
     const rows = await sql`SELECT * FROM Booking ORDER BY date ASC`;
     return NextResponse.json(rows);
   } catch (error) {
@@ -16,9 +17,10 @@ export async function GET() {
 
 export async function POST(request) {
   try {
-    if (!process.env.DATABASE_URL) throw new Error("No database connected");
+    const dbUrl = process.env.DATABASE_URL || process.env.POSTGRES_URL;
+    if (!dbUrl) throw new Error("No database connected");
     const data = await request.json()
-    const sql = neon(process.env.DATABASE_URL);
+    const sql = neon(dbUrl);
     const rows = await sql`
       INSERT INTO Booking (date, "timeSlot", description, "isBooked") 
       VALUES (${data.date}, ${data.timeSlot}, ${data.description || ''}, true) 
@@ -33,12 +35,13 @@ export async function POST(request) {
 
 export async function DELETE(request) {
   try {
-    if (!process.env.DATABASE_URL) throw new Error("No database connected");
+    const dbUrl = process.env.DATABASE_URL || process.env.POSTGRES_URL;
+    if (!dbUrl) throw new Error("No database connected");
     const { searchParams } = new URL(request.url)
     const id = parseInt(searchParams.get('id'))
     if (!id) return NextResponse.json({ error: 'Missing id' }, { status: 400 })
     
-    const sql = neon(process.env.DATABASE_URL);
+    const sql = neon(dbUrl);
     await sql`DELETE FROM Booking WHERE id = ${id}`;
     return NextResponse.json({ success: true })
   } catch (error) {
