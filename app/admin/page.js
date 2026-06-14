@@ -59,6 +59,9 @@ export default function AdminPage() {
       setDate('');
       setDescription('');
       fetchBookings();
+    } else {
+      const data = await res.json().catch(() => ({}));
+      alert(`Error saving booking: ${data.error || 'Server error'}. Did you run the database setup script?`);
     }
   };
 

@@ -51,7 +51,7 @@ export default function Calendar() {
             <button onClick={nextMonth} style={{ background: 'none', color: 'var(--color-royal-blue)' }}><ChevronRight /></button>
           </div>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '8px', textAlign: 'center', marginBottom: '1rem', fontWeight: 600 }}>
+          <div className="calendar-grid-header" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '8px', textAlign: 'center', marginBottom: '1rem', fontWeight: 600 }}>
             {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(d => <div key={d}>{d}</div>)}
           </div>
           
@@ -90,8 +90,8 @@ export default function Calendar() {
                     fontWeight: isSelected || isFullyBooked ? 600 : 400
                   }}
                 >
-                  {format(day, 'd')}
-                  <div style={{ fontSize: '0.7rem', marginTop: '4px', lineHeight: '1.2' }}>
+                  <span className="calendar-day-text">{format(day, 'd')}</span>
+                  <div className="calendar-status-text" style={{ fontSize: '0.7rem', marginTop: '4px', lineHeight: '1.2' }}>
                     {statusText}
                   </div>
                 </div>

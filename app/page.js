@@ -22,13 +22,13 @@ export default function Home() {
         padding: '0 20px'
       }}>
         <div style={{ maxWidth: '800px' }}>
-          <h1 style={{ fontSize: '4rem', color: 'var(--color-gold)', marginBottom: '1rem', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+          <h1 className="hero-title" style={{ fontSize: '4rem', color: 'var(--color-gold)', marginBottom: '1rem', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
             Nachiyar Mahal
           </h1>
           <p style={{ fontSize: '1.2rem', marginBottom: '2rem', opacity: 0.9 }}>
             A premium destination for your dream wedding. Experience elegance, spacious seating, and world-class amenities.
           </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+          <div className="hero-buttons" style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
             <Link href="#availability" className="btn-primary" style={{ padding: '12px 32px', fontSize: '1.1rem' }}>
               Check Availability
             </Link>

@@ -102,3 +102,35 @@ input:focus, select:focus, textarea:focus {
 .mb-4 { margin-bottom: 1rem; }
 .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
 .py-8 { padding-top: 4rem; padding-bottom: 4rem; }
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem !important;
+  }
+  .hero-buttons {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  .hero-buttons a {
+    width: 100% !important;
+  }
+  .navbar-container {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  .navbar-links {
+    gap: 1rem !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+  .calendar-day-text {
+    font-size: 0.9rem !important;
+  }
+  .calendar-status-text {
+    font-size: 0.55rem !important;
+  }
+  .calendar-grid-header {
+    font-size: 0.8rem !important;
+  }
+}
