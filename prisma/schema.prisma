@@ -1,0 +1,20 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Booking {
+  id          Int      @id @default(autoincrement())
+  date        String   // YYYY-MM-DD
+  timeSlot    String   // e.g., "Morning", "Evening", or "Full Day"
+  description String?
+  isBooked    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
